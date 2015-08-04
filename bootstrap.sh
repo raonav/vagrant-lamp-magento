@@ -5,7 +5,7 @@ apt-get update
 # install needed software
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
-apt-get install -y apache2 php5 php5-curl php5-mcrypt mysql-server php5-xdebug
+apt-get install -y apache2 php5 php5-curl php5-mcrypt mysql-server php5-mysql php5-xdebug
 
 # configurations
 php5enmod mcrypt
