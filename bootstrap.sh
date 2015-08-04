@@ -14,4 +14,4 @@ service apache2 reload
 service apache2 restart
 
 # download magento
-wget http://www.magentocommerce.com/downloads/assets/1.9.0.1/magento-1.9.0.1.tar.gz
+wget -q http://www.magentocommerce.com/downloads/assets/1.9.0.1/magento-1.9.0.1.tar.gz
