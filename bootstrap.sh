@@ -12,6 +12,7 @@ php5enmod mcrypt
 a2enmod rewrite
 service apache2 reload
 service apache2 restart
+locale-gen en_NZ.UTF-8
 
 # download magento
 wget -q http://www.magentocommerce.com/downloads/assets/1.9.0.1/magento-1.9.0.1.tar.gz
