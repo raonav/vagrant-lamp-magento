@@ -11,7 +11,7 @@ apt-get install -y build-essential binutils-doc git apache2 php5 php5-curl php5-
 cat << EOF > /etc/apache2/sites-available/magento.conf
 <VirtualHost *:80>
     DocumentRoot /var/www/magento
-
+    ServerName magento.dev 
     ErrorLog /var/log/apache2/error.log
 
     <Directory /var/www/magento/>
