@@ -1,5 +1,7 @@
 #!/bin/bash
 
+MACHINE_NAME=$1
+
 apt-get update
 
 # install needed software
@@ -11,7 +13,7 @@ apt-get install -y build-essential binutils-doc git apache2 php5 php5-curl php5-
 cat << EOF > /etc/apache2/sites-available/magento.conf
 <VirtualHost *:80>
     DocumentRoot /var/www/magento
-    ServerName magento.dev 
+    ServerName ${MACHINE_NAME} 
     ErrorLog /var/log/apache2/error.log
 
     <Directory /var/www/magento/>
@@ -21,7 +23,11 @@ cat << EOF > /etc/apache2/sites-available/magento.conf
 </VirtualHost>
 EOF
 rm -rf /var/www/html
-mkdir /var/www/magento
+
+if [ ! -d /var/www/magento ]; then
+    mkdir /var/www/magento
+fi
+
 a2dissite 000-default.conf
 a2ensite magento.conf
 php5enmod mcrypt
@@ -30,7 +36,12 @@ service apache2 reload
 service apache2 restart
 locale-gen en_NZ.UTF-8
 
-# download magento
-cd /var/www/
-wget -q http://www.magentocommerce.com/downloads/assets/1.9.0.1/magento-1.9.0.1.tar.gz | tar xz
+# installing additional tools
+cd /vagrant
+mkdir downloads
+cd downloads
+## installing n98-magerun
+wget http://files.magerun.net/n98-magerun-latest.phar
+chmod +x ./n98-magerun-latest.phar
+cp ./n98-magerun-latest.phar /usr/local/bin/n98-magerun
 
