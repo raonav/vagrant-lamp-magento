@@ -40,6 +40,9 @@ locale-gen en_NZ.UTF-8
 cd /vagrant
 mkdir downloads
 cd downloads
+## installing composer
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
 ## installing n98-magerun
 wget http://files.magerun.net/n98-magerun-latest.phar
 chmod +x ./n98-magerun-latest.phar
