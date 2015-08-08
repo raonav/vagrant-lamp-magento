@@ -4,6 +4,8 @@ MACHINE_NAME=$1
 
 apt-get update
 
+apt-get upgrade -y
+
 # install needed software
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
