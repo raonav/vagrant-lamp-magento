@@ -40,7 +40,9 @@ locale-gen en_NZ.UTF-8
 
 # installing additional tools
 cd /vagrant
-mkdir downloads
+if [ ! -d /vagrant/downloads ]; then
+    mkdir downloads
+fi
 cd downloads
 ## installing composer
 curl -sS https://getcomposer.org/installer | php
@@ -48,7 +50,11 @@ mv composer.phar /usr/local/bin/composer
 ## installing n98-magerun
 wget http://files.magerun.net/n98-magerun-latest.phar
 chmod +x ./n98-magerun-latest.phar
-cp ./n98-magerun-latest.phar /usr/local/bin/n98-magerun
+mv ./n98-magerun-latest.phar /usr/local/bin/n98-magerun
+if [-d /vagrant/downloads ]; then
+    cd /vagrant/
+    rm -r /vagrant/downloads
+fi
 
 # installing magento
 mysql -u root -proot -e "CREATE TABLE IF NOT EXISTS magento;" 
