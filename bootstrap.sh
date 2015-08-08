@@ -48,3 +48,10 @@ wget http://files.magerun.net/n98-magerun-latest.phar
 chmod +x ./n98-magerun-latest.phar
 cp ./n98-magerun-latest.phar /usr/local/bin/n98-magerun
 
+# installing magento
+mysql -u root -proot -e "CREATE TABLE IF NOT EXISTS magento;" 
+mysql -u root -proot -e "CREATE USER magento@localhost IDENTIFIED BY 'magento';"
+mysql -u root -proot -e "GRANT ALL PRIVILEGES ON magento.* TO magento@localhost;"
+mysql -u root -proot -e "FLUSH PRIVILEGES;"
+
+
