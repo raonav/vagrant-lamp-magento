@@ -10,11 +10,15 @@ end
 
 Vagrant.configure(2) do |config|
 
+  # custom variables
+  # TODO: pass these to a separate config file, json or yaml
+  hostname = 'magento.dev'
+
   config.vm.box = "ubuntu/trusty64"
 
   config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "private_network", type: "dhcp"
-  config.vm.hostname = 'magento.dev'
+  config.vm.hostname = "#{hostname}"
 
   config.vm.synced_folder "./www", "/var/www", create: true
 
@@ -36,6 +40,6 @@ Vagrant.configure(2) do |config|
       vb.name = "vagrant-lamp-magento"
   end
 
-  config.vm.provision "shell", path: "bootstrap.sh", :args => "magento.dev"
+  config.vm.provision "shell", path: "bootstrap.sh", :args => "#{hostname}"
 
 end
