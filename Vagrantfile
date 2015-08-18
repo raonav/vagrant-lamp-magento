@@ -1,6 +1,13 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# check for vagrant-hostmanager and force installation
+# need a better way to handle these but currently I only need the one plugin
+unless Vagrant.has_plugin?("vagrant-hostmanager")
+  system ('vagrant plugin install vagrant-hostmanager')
+  abort "Ok you need to run vagrant up again :/"
+end
+
 Vagrant.configure(2) do |config|
 
   config.vm.box = "ubuntu/trusty64"
