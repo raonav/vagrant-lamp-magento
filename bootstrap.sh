@@ -9,13 +9,13 @@ apt-get upgrade -y
 # install needed software
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
-apt-get install -y build-essential binutils-doc git apache2 php5 php5-curl php5-mcrypt mysql-server php5-mysql php5-xdebug
+apt-get install -y build-essential binutils-doc git apache2 php5 php5-curl php5-mcrypt mysql-server php5-mysql php5-xdebug php5-gd
 
 # configurations
 cat << EOF > /etc/apache2/sites-available/magento.conf
 <VirtualHost *:80>
     DocumentRoot /var/www/magento
-    ServerName ${MACHINE_NAME} 
+    ServerName ${MACHINE_NAME}
     ErrorLog /var/log/apache2/error.log
 
     <Directory /var/www/magento/>
@@ -57,9 +57,7 @@ if [ -d /vagrant/downloads ]; then
 fi
 
 # installing magento
-mysql -u root -proot -e "CREATE DATABASE IF NOT EXISTS magento;" 
+mysql -u root -proot -e "CREATE DATABASE IF NOT EXISTS magento;"
 mysql -u root -proot -e "CREATE USER magento@localhost IDENTIFIED BY 'magento';"
 mysql -u root -proot -e "GRANT ALL PRIVILEGES ON magento.* TO magento@localhost;"
 mysql -u root -proot -e "FLUSH PRIVILEGES;"
-
-
