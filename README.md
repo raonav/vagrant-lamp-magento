@@ -2,6 +2,11 @@ This is a work in progress lamp setup for Magento projects. It'll eventually con
 
 It's also my chance to play at devops cause the *nix and the command line are pretty hip.
 
+Magento admin login:
+
+username: admin
+password: password123
+
 Links and stuff
 
 - [n98 magerun](https://github.com/netz98/n98-magerun)
