@@ -22,6 +22,8 @@ Vagrant.configure(2) do |config|
 
   config.vm.synced_folder "./www", "/var/www", create: true
 
+  config.vm.synced_folder "./www", "/var/www", mount_options: ['dmode=777','fmode=666']
+
   # hostmanager stuff
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
