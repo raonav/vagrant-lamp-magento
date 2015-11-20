@@ -41,7 +41,7 @@ locale-gen en_NZ.UTF-8
 # TODO: xdebug configuration
 function phpconfiguration {
   # increase memory limit for php apache
-  sed -i '/memory_limit = 128M/c memory_limit = 1024M' /etc/php5/apache2/php.ini
+  sed -i '/memory_limit = 128M/c memory_limit = 1536M' /etc/php5/apache2/php.ini
 }
 
 # installing additional tools
@@ -78,6 +78,8 @@ function installmagento {
   # TODO: magerun yaml configuration
   sudo -u vagrant n98-magerun install --dbHost="localhost" --dbUser="$1" --dbPass="$1" --dbName="$1" --installSampleData=yes --useDefaultConfigParams=yes --magentoVersionByName="magento-mirror-1.9.2.1" --installationFolder="$1" --baseUrl="http://${MACHINE_NAME}/"
 }
+
+phpconfiguration
 
 installadditionaltools
 
